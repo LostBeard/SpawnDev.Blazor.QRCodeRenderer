@@ -10,7 +10,7 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.3" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.3" PrivateAssets="all" />
-		<PackageReference Include="SpawnDev.Blazor.QRCodeRenderer" Version="1.0.1-alpha2" />
+		<PackageReference Include="SpawnDev.Blazor.QRCodeRenderer" Version="1.0.2" />
 	</ItemGroup>
 
 </Project>
