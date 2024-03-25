@@ -47,6 +47,6 @@ SVG QRCode renderer
 #### AutoUpdateUriRelativeUrls ```(optional)```
 - bool - If true (default) a DataTextType.UriRelativeUrl DataText URL will automatically be updated when a NavigationManager.LocationChanged event fires
 
-
-
+#### QRRenderMode ```(optional)```
+- QRRenderMode - The mode to use when rendering the QRCode
 
