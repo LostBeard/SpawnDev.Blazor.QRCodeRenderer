@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "QRCodeRendererDemo",
   "resources": {
-    "hash": "sha256-hPK0EtFpK683SddOP9O7jffyoGvXnU8z2zFfFR5ynEE=",
+    "hash": "sha256-2gaHMFqLHmbjTRwVL/0O++oOOYk2wOiv6HtdTsMEO+c=",
     "jsModuleNative": {
       "dotnet.native.8.0.3.7dansole3m.js": "sha256-Frpz+PJM4tBI5Cr/2nCjZwzp9dQxuGyrNrF8hxZWrQk="
     },
@@ -31,8 +31,8 @@
       "Microsoft.Extensions.Primitives.wasm": "sha256-6187ynEahDlSLMBvD4vAmiLpZ3clRb5xu6rM7O8AxNo=",
       "Microsoft.JSInterop.wasm": "sha256-Bn0+3HZM43HzpL74LGkNAxaCesPtprqqtf90S28SGCA=",
       "Microsoft.JSInterop.WebAssembly.wasm": "sha256-Kr13V+6zGL8rPvFmuBAsaEJfoMlR4Q8keJHKaVGVbGA=",
-      "QRCodeRendererDemo.wasm": "sha256-TGT9AWzMdVQSklWSpDUEnI6DGmWUn6aNyT6Tsygz3/c=",
-      "SpawnDev.Blazor.QRCodeRenderer.wasm": "sha256-k/b1i8nLMb1bMdOwP0oi5GDhhNjTH8cMlhuQOaRChKI=",
+      "QRCodeRendererDemo.wasm": "sha256-SRF7ahLeIT9NyJfec4HI2J61YO4uyE7daYR6UxzC0Rs=",
+      "SpawnDev.Blazor.QRCodeRenderer.wasm": "sha256-XV+ITu8/R1VAA2Y6BIiRRzbPRPSJfra8nxq8zZ3+bD8=",
       "System.Collections.Concurrent.wasm": "sha256-+rQ7+abi2fOL1qyw+zsMW5y8Ka2Lv/jlRnR2lyh58nI=",
       "System.Collections.NonGeneric.wasm": "sha256-C2hiG3ZjXqKlpKTOgCa/BWrUxjRxryc5VRUD+U6M/7I=",
       "System.Collections.wasm": "sha256-IAV1UmLoVsfflxrQ2c9yZMHKqNZ6pSzOF9eKV79RzT0=",
