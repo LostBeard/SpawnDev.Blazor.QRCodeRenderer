@@ -1,0 +1,32 @@
+﻿@page "/qrcodeimage"
+
+<PageTitle>Generate QRCode</PageTitle>
+
+<h1>Generate PNG image QRCode</h1>
+<div>
+    <textarea @bind-value=value @bind-value:event="oninput" placeholder="Enter your text" cols="60" /><br />
+    <button class="btn btn-primary" @onclick="GeneratePNG">Generate PNG</button>
+    <button class="btn btn-primary" @onclick="GenerateSVG">Generate SVG</button>
+</div>
+<div>@qrvalue</div>
+<div><QRCodeImage Style="width: 256px;" DarkColor="darkgreen" DataText="@qrvalue" QRRenderMode="@RenderMode" /></div>
+
+@code
+{
+    QRRenderMode RenderMode = QRRenderMode.ImageElementPng;
+    string value = "Hello world!";
+    string qrvalue = "Hello world!";
+
+    private void GeneratePNG()
+    {
+        RenderMode = QRRenderMode.ImageElementPng;
+        qrvalue = value;
+        StateHasChanged();
+    }
+    private void GenerateSVG()
+    {
+        RenderMode = QRRenderMode.SvgElement;
+        qrvalue = value;
+        StateHasChanged();
+    }
+}

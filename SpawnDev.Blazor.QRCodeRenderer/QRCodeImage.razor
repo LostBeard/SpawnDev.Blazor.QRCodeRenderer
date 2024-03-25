@@ -1,0 +1,145 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+@using QRCoder;
+@implements IDisposable;
+
+@switch (QRRenderMode)
+{
+    case QRRenderMode.ImageElementPng:
+        <img style="@(Style ?? "")" src="@QRCodeImageBase64" />
+        break;
+    case QRRenderMode.SvgElement:
+        @((MarkupString)QRCodeImageBase64)
+        break;
+}
+
+@code {
+    /// <summary>
+    /// The mode to use when rendering the QRCode
+    /// </summary>
+    [Parameter]
+    public QRRenderMode QRRenderMode { get; set; } = QRRenderMode.ImageElementPng;
+    /// <summary>
+    /// Text data that will be used if not null
+    /// </summary>
+    [Parameter]
+    public string? DataText { get; set; }
+    /// <summary>
+    /// Binary data that will be used if not null
+    /// </summary>
+    [Parameter]
+    public byte[]? DataBytes { get; set; }
+    /// <summary>
+    /// DataTextType indicates how DataText should be processed before rendering
+    /// </summary>
+    [Parameter]
+    public DataTextType DataTextType { get; set; } = DataTextType.Text;
+    /// <summary>
+    /// Style to apply to the img/svg element
+    /// </summary>
+    [Parameter]
+    public string Style { get; set; } = "";
+    /// <summary>
+    /// Error Correction Level
+    /// </summary>
+    [Parameter]
+    public QRCodeGenerator.ECCLevel EccLevel { get; set; } = QRCodeGenerator.ECCLevel.Q;
+    /// <summary>
+    /// The pixel size each b/w module is drawn
+    /// </summary>
+    [Parameter]
+    public int PixelsPerModule { get; set; } = 8;
+    /// <summary>
+    /// If true a white border is drawn around the whole QR Code
+    /// </summary>
+    [Parameter]
+    public bool DrawQuietZones { get; set; } = true;
+    /// <summary>
+    /// The color of the dark/black modules in html notation
+    /// </summary>
+    [Parameter]
+    public string? DarkColor { get; set; }
+    /// <summary>
+    /// The color of the light/white modules in html notation
+    /// </summary>
+    [Parameter]
+    public string? LightColor { get; set; }
+    /// <summary>
+    /// If true (default) a UriRelativeUrl data text URL will automatically be updated when NavigationManager.LocationChanged event fires
+    /// </summary>
+    [Parameter]
+    public bool AutoUpdateUriRelativeUrls { get; set; } = true;
+    [Inject]
+    NavigationManager NavigationManager { get; set; }
+    /// <summary>
+    /// Base 64 encoded QRCode image
+    /// </summary>
+    public string QRCodeImageBase64 { get; private set; } = "";
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += NavigationManager_LocationChanged;
+    }
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= NavigationManager_LocationChanged;
+    }
+    void NavigationManager_LocationChanged(object? sender, LocationChangedEventArgs locationChangedEventArgs)
+    {
+        if (DataTextType == DataTextType.UriRelativeUrl && AutoUpdateUriRelativeUrls)
+        {
+            QRCodeImageBase64 = GenerateQRCode();
+            StateHasChanged();
+        }
+    }
+    protected override void OnParametersSet()
+    {
+        QRCodeImageBase64 = GenerateQRCode();
+    }
+    string WhiteRGBA { get; } = "white";
+    string BlackRGBA { get; } = "black";
+    string GenerateQRCode()
+    {
+        QRCodeData? qrCodeData = null;
+        if (DataText != null)
+        {
+            var txt = DataText;
+            switch (DataTextType)
+            {
+                case DataTextType.UriRelativeUrl:
+                    txt = new Uri(new Uri(NavigationManager.Uri), DataText).ToString();
+                    break;
+                case DataTextType.BaseUriRelativeUrl:
+                    txt = new Uri(new Uri(NavigationManager.BaseUri), DataText).ToString();
+                    break;
+            }
+            qrCodeData = QRCodeGenerator.GenerateQrCode(txt, EccLevel);
+        }
+        else if (DataBytes != null)
+        {
+            qrCodeData = QRCodeGenerator.GenerateQrCode(DataBytes, EccLevel);
+        }
+        if (qrCodeData == null) return "";
+        try
+        {
+            var darkColor = !string.IsNullOrEmpty(DarkColor) ? DarkColor : BlackRGBA;
+            var lightColor = !string.IsNullOrEmpty(LightColor) ? LightColor : WhiteRGBA;
+            switch (QRRenderMode)
+            {
+                case QRRenderMode.ImageElementPng:
+                    {
+                        using var pngQrCode = new PngByteQRCode(qrCodeData);
+                        return pngQrCode.GetGraphicBase64(PixelsPerModule, darkColor, lightColor, DrawQuietZones);
+                    }
+                case QRRenderMode.SvgElement:
+                    {
+                        using var svgQrCode = new SvgQRCode(qrCodeData);
+                        return svgQrCode.GetGraphic(Style, PixelsPerModule, darkColor, lightColor, DrawQuietZones);
+                    };
+            }
+        }
+        finally
+        {
+            qrCodeData.Dispose();
+        }
+        return "";
+    }
+}
