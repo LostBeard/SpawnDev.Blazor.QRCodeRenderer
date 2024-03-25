@@ -4,6 +4,9 @@
  
 SpawnDev.Blazor.QRCodeRenderer is a pure C# QRCode renderer for Blazor based on the popular open source and MIT Licensed [QRCoder](https://github.com/codebude/QRCoder).
 
+### Dependencies
+No dependencies. The QRCode is generated using pure C# using a subset of the [QRCoder](https://github.com/codebude/QRCoder) project.
+
 [Live Demo](https://lostbeard.github.io/SpawnDev.Blazor.QRCodeRenderer/)
 
 Image QRCode renderer
