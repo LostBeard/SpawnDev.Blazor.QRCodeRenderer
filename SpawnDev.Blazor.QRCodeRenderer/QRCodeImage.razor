@@ -5,7 +5,7 @@
 @switch (QRRenderMode)
 {
     case QRRenderMode.ImageElementPng:
-        <img style="@(Style ?? "")" src="@QRCodeImageBase64" />
+        <img class="@(Class ?? "")" style="@(Style ?? "")" src="@QRCodeImageBase64" />
         break;
     case QRRenderMode.SvgElement:
         @((MarkupString)QRCodeImageBase64)
@@ -38,6 +38,11 @@
     /// </summary>
     [Parameter]
     public string Style { get; set; } = "";
+    /// <summary>
+    /// Class to apply to the img/svg element
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; } = "";
     /// <summary>
     /// Error Correction Level
     /// </summary>
@@ -132,7 +137,7 @@
                 case QRRenderMode.SvgElement:
                     {
                         using var svgQrCode = new SvgQRCode(qrCodeData);
-                        return svgQrCode.GetGraphic(Style, PixelsPerModule, darkColor, lightColor, DrawQuietZones);
+                        return svgQrCode.GetGraphic(Class, Style, PixelsPerModule, darkColor, lightColor, DrawQuietZones);
                     };
             }
         }
