@@ -9,7 +9,7 @@
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<EmbedAllSources>true</EmbedAllSources>
 		<DebugType>Embedded</DebugType>
-		<Title>SpawnDev.BlazorJS.QRCodeRenderer</Title>
+		<Title>SpawnDev.Blazor.QRCodeRenderer</Title>
 		<Authors>LostBeard</Authors>
 		<Description>Blazor QRCode renderer based on QRCoder</Description>
 		<PackageProjectUrl>https://github.com/LostBeard/SpawnDev.Blazor.QRCodeRenderer</PackageProjectUrl>
