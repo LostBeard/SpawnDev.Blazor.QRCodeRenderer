@@ -12,11 +12,11 @@
 		<Title>SpawnDev.BlazorJS.QRCodeRenderer</Title>
 		<Authors>LostBeard</Authors>
 		<Description>Blazor QRCode renderer based on QRCoder</Description>
-		<PackageProjectUrl>https://github.com/LostBeard/SpawnDev.BlazorJS</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/LostBeard/SpawnDev.Blazor.QRCodeRenderer</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<PackageIcon>icon-128.png</PackageIcon>
-		<RepositoryUrl>https://github.com/LostBeard/SpawnDev.BlazorJS.git</RepositoryUrl>
+		<RepositoryUrl>https://github.com/LostBeard/SpawnDev.Blazor.QRCodeRenderer.git</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>Blazor;QRCode;DotNet</PackageTags>
 	</PropertyGroup>
