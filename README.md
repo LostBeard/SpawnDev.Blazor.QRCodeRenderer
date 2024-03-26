@@ -1,13 +1,19 @@
 
 # SpawnDev.Blazor.QRCodeRenderer
 [![NuGet version](https://badge.fury.io/nu/SpawnDev.Blazor.QRCodeRenderer.svg)](https://www.nuget.org/packages/SpawnDev.Blazor.QRCodeRenderer) 
+
+[Live Demo](https://lostbeard.github.io/SpawnDev.Blazor.QRCodeRenderer/)
  
 SpawnDev.Blazor.QRCodeRenderer is a pure C# QRCode renderer for Blazor based on the awesome [QRCoder](https://github.com/codebude/QRCoder) project.
 
 ### No Dependencies
 The QRCode is generated in pure C# without any dependencies.
 
-[Live Demo](https://lostbeard.github.io/SpawnDev.Blazor.QRCodeRenderer/)
+### Getting started
+
+Add SpawnDev.Blazor.QRCodeRenderer Nuget package to your Blazor project
+
+### How to use
 
 Image QRCode renderer
 ```html
@@ -19,7 +25,7 @@ SVG QRCode renderer
 <QRCodeImage DarkColor="darkgreen" DataText="Hello world!" QRRenderMode="QRRenderMode.SvgElement" />
 ```
 
-## Parameters
+## QRCodeImage Parameters
 #### DataText ```(optional)```
 - string - Text data that will be used for the QRCode if not null
 
